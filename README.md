@@ -1,0 +1,1 @@
+Plugin for renaming items and editing lores, use hex in the format &#FFFFFF#, Spigot 1.16.3
