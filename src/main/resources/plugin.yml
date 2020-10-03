@@ -1,0 +1,12 @@
+name: RenamePlugin
+version: 1.0.0
+main: dev.RenamePlugin
+commands:
+  rename:
+    description: "Renames held item"
+    usage: "/rename <name>"
+    permission: rename.use
+  lore:
+    description: "Changes lore of item"
+    usage: "/lore <add/clear/set/remove>"
+    permission: rename.lore
