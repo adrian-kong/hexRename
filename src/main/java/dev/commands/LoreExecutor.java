@@ -15,8 +15,8 @@ import java.util.List;
 
 public class LoreExecutor implements CommandExecutor {
 
+    @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
-
         if (commandSender instanceof Player && args.length > 0) {
             Player player = ((Player) commandSender);
             if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {
@@ -42,9 +42,7 @@ public class LoreExecutor implements CommandExecutor {
                             int index = Integer.parseInt(args[1]);
                             if (lore.size() > index) {
                                 String entry = "";
-                                if (args.length > 2) {
-                                    entry = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
-                                }
+                                entry = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
                                 lore.set(index, HexTranslator.translated(entry));
                             }
                         }

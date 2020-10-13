@@ -11,8 +11,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class RenameExecutor implements CommandExecutor {
 
+    @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
-
         if (commandSender instanceof Player) {
             Player player = ((Player) commandSender);
             if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {
