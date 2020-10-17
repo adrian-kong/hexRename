@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -23,19 +24,17 @@ public class LoreExecutor implements CommandExecutor {
                 ItemStack item = player.getInventory().getItemInMainHand();
                 ItemMeta meta = item.getItemMeta();
                 List<String> lore = meta.getLore();
-                if (meta.getLore() == null) {
+                if (lore == null) {
                     lore = new ArrayList<>();
                 }
                 if (args[0].equalsIgnoreCase("clear")) {
                     lore.clear();
-                    return true;
                 } else if (args[0].equalsIgnoreCase("add")) {
                     String entry = "";
                     if (args.length > 1) {
                         entry = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
                     }
                     lore.add(HexTranslator.translated(entry));
-                    return true;
                 } else if (args[0].equalsIgnoreCase("set")) {
                     if (args.length > 2) {
                         if (args[1].matches("\\d+")) {
@@ -56,6 +55,9 @@ public class LoreExecutor implements CommandExecutor {
                     }
                 }
                 meta.setLore(lore);
+                if (!meta.hasItemFlag(ItemFlag.HIDE_POTION_EFFECTS)) {
+                    meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                }
                 item.setItemMeta(meta);
                 player.getInventory().setItemInMainHand(item);
                 return true;
